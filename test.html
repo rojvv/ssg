@@ -5,15 +5,11 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Browser String Session Generator</title>
-      <link
-         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
-         rel="stylesheet"
-         />
-      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="assets/css/style.css" />
    </head>
-   <body class="d-flex flex-column h-100">
-      <main class="flex-shrink-0">
-         <div class="container mt-5">
+   <body>
+      <main>
+         <div>
             <h3 id="result">
                Check your Telegram Saved messages for Session String.
             </h3>
@@ -33,5 +29,22 @@
        <input id="apiHash" type="number" class="input" placeholder=" ">
        <label class="details" for="">Phone Number</label>
       </div>
-      <input type="submit" id="start" class="submit" value="Next" onclick="start();>
-    </form>
+      <input type="submit" id="start" class="submit" value="Next" onclick="start();">
+
+     <div>
+       <input id="code" type="number" class="input" placeholder=" ">
+       <label class="details" for="">Code</label>
+      </div>
+      <input type="submit" id="codeb" class="submit" value="Next" onclick="code();">
+
+     <div>
+       <input id="password" type="number" class="input" placeholder=" ">
+       <label class="details" for="">Password</label>
+      </div>
+      <input type="submit" id="passwordb" class="submit" value="Next" onclick="password();">   
+</form>
+</main>
+   <script src="assets/js/gramjs.js"></script>
+      <script src="assets/js/app.js"></script>
+</body>
+</html>
