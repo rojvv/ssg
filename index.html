@@ -4,136 +4,113 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Browser String Session Generator</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
+    <title>BSSG - Generator</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0">
-      <div class="container mt-5">
-        <h3 id="result">
-          The generated string session was sent to saved messages.
-        </h3>
-        <input
-          id="apiId"
-          type="number"
-          placeholder="App api_id"
-          class="form-control mb-3"
-        />
-        <input
-          id="apiHash"
-          type="text"
-          placeholder="App api_hash"
-          class="form-control mb-3"
-        />
-        <input
-          id="number"
-          type="text"
-          placeholder="Phone number"
-          class="form-control mb-3"
-        />
-        <button id="start" class="btn btn-primary mb-3" onclick="start();">
-          Next
-        </button>
-        <input
-          id="code"
-          type="number"
-          placeholder="Code"
-          class="form-control mb-3"
-        />
-        <button id="codeb" class="btn btn-primary mb-3" onclick="code();">
-          Next
-        </button>
-        <input
-          id="password"
-          type="password"
-          placeholder="Password"
-          class="form-control mb-3"
-        />
-        <button
-          id="passwordb"
-          class="btn btn-primary mb-3"
-          onclick="password();"
-        >
-          Next
-        </button>
-      </div>
-    </main>
-    <footer class="footer mt-auto py-3">
-      <div class="container">
-        <span class="text-muted"
-          >© 2021 Roj Serbest ·
-          <a href="https://github.com/rojserbest/bssg">Source Code</a></span
-        >
-      </div>
-    </footer>
-    <div id="loader">
-      <svg
-        version="1.1"
-        id="loader-1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        width="100px"
-        height="100px"
-        viewBox="0 0 50 50"
-        style="enable-background: new 0 0 50 50"
-        xml:space="preserve"
-      >
-        <path
-          fill="#0d6efd"
-          d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
-        >
-          <animateTransform
-            attributeType="xml"
-            attributeName="transform"
-            type="rotate"
-            from="0 25 25"
-            to="360 25 25"
-            dur="0.5s"
-            repeatCount="indefinite"
-          />
-        </path>
-      </svg>
-    </div>
-    <div
-      class="modal fade"
-      id="errorModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Error</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+  <body>
+    <main>
+      <section id="section_1" class="section">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <input
+                  type="number"
+                  class="input"
+                  placeholder="API ID"
+                  id="apiId"
+                />
+              </div>
+            </div>
+            <div class="column">
+              <div class="field">
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="API hash"
+                  id="apiHash"
+                />
+              </div>
+            </div>
           </div>
-          <div id="errorModalBody" class="modal-body"></div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            >
-              OK
-            </button>
+          <div class="field">
+            <input
+              type="text"
+              class="input"
+              placeholder="Phone number"
+              id="number"
+            />
+          </div>
+          <button id="start" onclick="start();" class="button is-link mt-2">
+            Next
+          </button>
+        </div>
+      </section>
+
+      <section class="section is-hidden" id="section_2">
+        <div class="container">
+          <div class="field">
+            <input type="number" class="input" id="code" placeholder="Code" />
+          </div>
+          <button id="codeb" onclick="code();" class="button is-link mt-2">
+            Next
+          </button>
+        </div>
+      </section>
+
+      <section class="section is-hidden" id="section_3">
+        <div class="container">
+          <div class="field">
+            <input
+              type="password"
+              class="input"
+              id="password"
+              placeholder="Password"
+            />
+          </div>
+          <button
+            id="passwordb"
+            onclick="password();"
+            class="button is-link mt-2"
+          >
+            Next
+          </button>
+        </div>
+      </section>
+      <section class="section is-hidden" id="section_4">
+        <div class="container">
+          <h1 class="title">String session generated.</h1>
+          <p class="subtitle">And it was sent to your saved messages.</p>
+        </div>
+      </section>
+      <div id="errorModal" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="card">
+            <div class="card-content">
+              <div class="content" id="errorModalContent"></div>
+            </div>
+            <footer class="card-footer">
+              <a
+                onclick="document.querySelector('#errorModal').classList.remove('is-active')"
+                class="card-footer-item"
+                >OK</a
+              >
+            </footer>
           </div>
         </div>
       </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="gramjs.js"></script>
-    <script src="app.js"></script>
+      <div class="spacer"></div>
+    </main>
+    <footer class="footer has-background-white">
+      <div class="content has-text-centered">
+        <p>
+          &copy; 2021 <b>Roj Serbest</b> ·
+          <a href="https://github.com/rojserbest/bssg">Source Code</a>
+        </p>
+      </div>
+    </footer>
+    <script src="js/gramjs.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

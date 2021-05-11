@@ -21,49 +21,40 @@ const getServerAddress = (dcId, port) => {
 
 var resolveCode;
 var resolvePassword;
-const errorModal = new bootstrap.Modal(document.querySelector("#errorModal"));
 
 const showError = (text) => {
-  document.querySelector("#errorModalBody").innerHTML = text;
-  errorModal.show();
+  document.querySelector("#errorModalContent").innerHTML = text;
+  document.querySelector("#errorModal").classList.add("is-active");
 };
 
-const startLoading = () => {
-  document.querySelector("#loader svg").style.width = "100px";
-  document.querySelector("#loader").style.height = "100%";
+const startLoading = (element) => {
+  document.querySelector(element).classList.add("is-loading");
 };
 
-const stopLoading = () => {
-  document.querySelector("#loader svg").style.width = "0";
-  document.querySelector("#loader").style.height = "0";
+const stopLoading = (element) => {
+  document.querySelector(element).classList.remove("is-loading");
 };
 
 const hideAll = () => {
-  const children = document.querySelector(".container").children;
-
-  for (let child in children) {
-    child = children[child];
-
-    if (child && child.style) child.style.display = "none";
-  }
+  document.querySelector("#section_1").classList.add("is-hidden");
+  document.querySelector("#section_2").classList.add("is-hidden");
+  document.querySelector("#section_3").classList.add("is-hidden");
+  document.querySelector("#section_4").classList.add("is-hidden");
 };
 
-const showCodeInput = () => {
+const showCodeSection = () => {
   hideAll();
-  document.querySelector("#code").style.display = "block";
-  document.querySelector("#codeb").style.display = "block";
+  document.querySelector("#section_2").classList.remove("is-hidden");
 };
 
-const showPasswordInput = () => {
+const showPasswordSection = () => {
   hideAll();
-  document.querySelector("#password").style.display = "block";
-  document.querySelector("#passwordb").style.display = "block";
+  document.querySelector("#section_3").classList.remove("is-hidden");
 };
 
-const showResult = () => {
-  document.querySelector("#password").style.display = "none";
-  document.querySelector("#passwordb").style.display = "none";
-  document.querySelector("#result").style.display = "block";
+const showResultSection = () => {
+  hideAll();
+  document.querySelector("#section_4").classList.remove("is-hidden");
 };
 
 const start = async () => {
@@ -82,7 +73,7 @@ const start = async () => {
     return;
   }
 
-  startLoading();
+  startLoading("#start");
 
   const client = new TelegramClient(new StringSession(), apiId, apiHash, {
     connectionRetries: 5,
@@ -95,25 +86,26 @@ const start = async () => {
       phoneCode: () =>
         new Promise((resolve, _) => {
           resolveCode = resolve;
-          showCodeInput();
-          stopLoading();
+          showCodeSection();
         }),
       password: () =>
         new Promise((resolve, _) => {
           resolvePassword = resolve;
-          showPasswordInput();
-          stopLoading();
+          showPasswordSection();
         }),
       onError: (error) => {
-        stopLoading();
+        stopLoading("#start");
+        stopLoading("#codeb");
+        stopLoading("#passwordb");
         showError(error.toString());
       },
     });
   } catch (error) {
-    stopLoading();
+    stopLoading("#start");
     showError(error.toString());
     return;
   }
+
   client.session.setDC(
     client.session.dcId,
     getServerAddress(client.session.dcId, client.session.port),
@@ -121,19 +113,15 @@ const start = async () => {
   );
   const message = `The generated string session by BSSG:\n\n${client.session.save()}`;
   await client.sendMessage("me", { message: message });
-
-  showResult();
-  stopLoading();
+  showResultSection();
 };
 
 const code = () => {
-  startLoading();
+  startLoading("#codeb");
   resolveCode(document.querySelector("#code").value);
 };
 
 const password = () => {
-  startLoading();
+  startLoading("#passwordb");
   resolvePassword(document.querySelector("#password").value);
 };
-
-stopLoading();
