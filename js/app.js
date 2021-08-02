@@ -28,11 +28,11 @@ const showError = (text) => {
 };
 
 const startLoading = (element) => {
-  document.querySelector(element).classList.add("is-loading");
+  document.querySelector(element).classList.toggle("is-loading");
 };
 
 const stopLoading = (element) => {
-  document.querySelector(element).classList.remove("is-loading");
+  document.querySelector(element).classList.toggle("is-loading");
 };
 
 const hideAll = () => {

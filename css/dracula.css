@@ -1,0 +1,17 @@
+.dark {
+  color: #ffffff;
+  background-color: rgb(51, 57, 61);
+}
+
+div.appBar > span.dark {
+  top: 10px;
+  position: fixed;
+  font-size: larger;
+  color: yellow;
+  font-weight: 500;
+  background-color: black;
+}
+
+.title.dark, .subtitle.dark {
+  color: #ffffff;
+}

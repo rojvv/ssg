@@ -2,12 +2,26 @@
 <html lang="en" class="h-100">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="Generate Telegram Session String on web browser" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BSSG</title>
+    <title>BSSG • v1.1</title>
+    <link rel="stylesheet" href="css/bulma.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dracula.css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   </head>
-  <body>
+  <body class="light">
+    <div class="appBar">
+      <span style="position: fixed;left: 10px;top: 9px">
+        <img src="/favicon.ico" alt="icon" width="32px" height="32px" ondragstart="return false;" />
+      </span>
+      <span class="light">BSSG</span>
+      <label class="switch">
+        <input type="checkbox" id="darkTheme">
+        <span class="slider round"></span>
+      </label>
+    </div>
     <main>
       <section id="section_1" class="section">
         <div class="container">
@@ -110,6 +124,7 @@
         </p>
       </div>
     </footer>
+    <script src="js/theme.js"></script>
     <script src="js/gramjs.js"></script>
     <script src="js/app.js"></script>
   </body>
