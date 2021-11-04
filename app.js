@@ -22,39 +22,39 @@ const getServerAddress = (dcId, port) => {
 var resolveCode;
 var resolvePassword;
 
-const showError = (text) => {
-  document.querySelector("#errorModalContent").innerHTML = text;
-  document.querySelector("#errorModal").classList.add("is-active");
+const showError = alert;
+
+const startLoading = () => {
+  document.querySelector("#loader").classList.remove("hid");
 };
 
-const startLoading = (element) => {
-  document.querySelector(element).classList.add("is-loading");
-};
-
-const stopLoading = (element) => {
-  document.querySelector(element).classList.remove("is-loading");
+const stopLoading = () => {
+  document.querySelector("#loader").classList.add("hid");
 };
 
 const hideAll = () => {
-  document.querySelector("#section_1").classList.add("is-hidden");
-  document.querySelector("#section_2").classList.add("is-hidden");
-  document.querySelector("#section_3").classList.add("is-hidden");
-  document.querySelector("#section_4").classList.add("is-hidden");
+  document.querySelector("#section_1").classList.add("hid");
+  document.querySelector("#section_2").classList.add("hid");
+  document.querySelector("#section_3").classList.add("hid");
+  document.querySelector("#section_4").classList.add("hid");
 };
 
 const showCodeSection = () => {
   hideAll();
-  document.querySelector("#section_2").classList.remove("is-hidden");
+  document.querySelector("#section_2").classList.remove("hid");
+  stopLoading();
 };
 
 const showPasswordSection = () => {
   hideAll();
-  document.querySelector("#section_3").classList.remove("is-hidden");
+  document.querySelector("#section_3").classList.remove("hid");
+  stopLoading();
 };
 
 const showResultSection = () => {
   hideAll();
-  document.querySelector("#section_4").classList.remove("is-hidden");
+  document.querySelector("#section_4").classList.remove("hid");
+  stopLoading();
 };
 
 const start = async () => {
@@ -73,12 +73,9 @@ const start = async () => {
     return;
   }
 
-  startLoading("#start");
+  startLoading();
 
-  const client = new TelegramClient(new StringSession(), apiId, apiHash, {
-    connectionRetries: 5,
-    useWSS: window.location.protocol == "https:",
-  });
+  const client = new TelegramClient(new StringSession(), apiId, apiHash, {});
 
   try {
     await client.start({
@@ -94,14 +91,14 @@ const start = async () => {
           showPasswordSection();
         }),
       onError: (error) => {
-        stopLoading("#start");
-        stopLoading("#codeb");
-        stopLoading("#passwordb");
+        stopLoading();
+        stopLoading();
+        stopLoading();
         showError(error.toString());
       },
     });
   } catch (error) {
-    stopLoading("#start");
+    stopLoading();
     showError(error.toString());
     return;
   }
@@ -111,17 +108,19 @@ const start = async () => {
     getServerAddress(client.session.dcId, client.session.port),
     client.session.port
   );
-  const message = `Your generated string session from ssg.rojser.best:\n\n${client.session.save()}`;
-  await client.sendMessage("me", { message: message });
+
+  const message = `Your generated string session from ssg.rojser.best:\n\n\`${client.session.save()}\``;
+
+  await client.sendMessage("me", { message });
   showResultSection();
 };
 
 const code = () => {
-  startLoading("#codeb");
+  startLoading();
   resolveCode(document.querySelector("#code").value);
 };
 
 const password = () => {
-  startLoading("#passwordb");
+  startLoading();
   resolvePassword(document.querySelector("#password").value);
 };

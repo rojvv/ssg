@@ -1,116 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>String Session Generator</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <title>SSG</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main>
-      <section id="section_1" class="section">
-        <div class="container">
-          <div class="columns">
-            <div class="column">
-              <div class="field">
-                <input
-                  type="number"
-                  class="input"
-                  placeholder="API ID"
-                  id="apiId"
-                />
-              </div>
-            </div>
-            <div class="column">
-              <div class="field">
-                <input
-                  type="text"
-                  class="input"
-                  placeholder="API hash"
-                  id="apiHash"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <input
-              type="text"
-              class="input"
-              placeholder="Phone number"
-              id="number"
-            />
-          </div>
-          <button id="start" onclick="start();" class="button is-link mt-2">
-            Next
-          </button>
-        </div>
+    <main class="mt">
+      <section id="loader" class="hid">
+        <div class="pulse"></div>
       </section>
 
-      <section class="section is-hidden" id="section_2">
-        <div class="container">
-          <div class="field">
-            <input type="number" class="input" id="code" placeholder="Code" />
-          </div>
-          <button id="codeb" onclick="code();" class="button is-link mt-2">
-            Next
-          </button>
+      <section id="section_1">
+        <div class="mb">
+          <h1>SSG</h1>
+          <p>
+            Generate GramJS and Telethon string sessions, here inside your
+            browser.
+          </p>
         </div>
+
+        <input type="number" class="mb" placeholder="API ID" id="apiId" />
+        <input type="password" class="mb" placeholder="API hash" id="apiHash" />
+        <input type="text" class="mb" placeholder="Phone number" id="number" />
+        <button id="start" onclick="start();">Next</button>
       </section>
 
-      <section class="section is-hidden" id="section_3">
-        <div class="container">
-          <div class="field">
-            <input
-              type="password"
-              class="input"
-              id="password"
-              placeholder="Password"
-            />
-          </div>
-          <button
-            id="passwordb"
-            onclick="password();"
-            class="button is-link mt-2"
-          >
-            Next
-          </button>
+      <section class="hid" id="section_2">
+        <div class="mb">
+          <h1>SSG</h1>
+          <p>Please enter the code you received.</p>
+        </div>
+        <input type="number" class="mb" id="code" placeholder="Code" />
+        <button id="codeb" onclick="code();">Next</button>
+      </section>
+
+      <section class="hid" id="section_3">
+        <div class="mb">
+          <h1>SSG</h1>
+          <p>Please enter your 2FA password.</p>
+        </div>
+        <input
+          type="password"
+          class="mb"
+          id="password"
+          placeholder="Password"
+        />
+        <button id="passwordb" onclick="password();">Next</button>
+      </section>
+
+      <section class="hid" id="section_4">
+        <div class="mb">
+          <h1>SSG</h1>
+          <p>
+            The string session was generated and sent to your saved messages.
+          </p>
         </div>
       </section>
-      <section class="section is-hidden" id="section_4">
-        <div class="container">
-          <h1 class="title">String session generated.</h1>
-          <p class="subtitle">And it was sent to your saved messages.</p>
-        </div>
-      </section>
-      <div id="errorModal" class="modal">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-          <div class="card">
-            <div class="card-content">
-              <div class="content" id="errorModalContent"></div>
-            </div>
-            <footer class="card-footer">
-              <a
-                onclick="document.querySelector('#errorModal').classList.remove('is-active')"
-                class="card-footer-item"
-                >OK</a
-              >
-            </footer>
-          </div>
-        </div>
-      </div>
-      <div class="spacer"></div>
     </main>
-    <footer class="footer has-background-white">
-      <div class="content has-text-centered">
-        <p>
-          &copy; 2021 <a href="https://rojser.best">Roj Serbest</a> ·
-          <a href="https://github.com/rojserbest/bssg">Source Code</a>
-        </p>
-      </div>
+    <footer class="mt mb">
+      <p>
+        &copy; 2021 <a href="https://rojser.best">Roj Serbest</a> ·
+        <a href="https://github.com/rojserbest/bssg">Source</a>
+      </p>
     </footer>
-    <script src="js/gramjs.js"></script>
-    <script src="js/app.js"></script>
+    <script src="gramjs.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
