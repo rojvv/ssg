@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSG</title>
+    <meta
+      name="description"
+      content="Generate GramJS string sessions with your browser."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section id="loader" style="display: none">
+      <h1>SSG</h1>
+    </section>
+
+    <section id="Smain">
+      <form id="Fmain">
+        <input
+          name="appId"
+          type="text"
+          placeholder="App ID"
+          autocomplete="off"
+        />
+        <input
+          name="appHash"
+          type="password"
+          placeholder="App hash"
+          autocomplete="off"
+        />
+        <input
+          name="number"
+          type="text"
+          placeholder="Phone number"
+          autocomplete="off"
+        />
+        <button type="submit">Next</button>
+      </form>
+    </section>
+
+    <section id="Scode" style="display: none">
+      <form id="Fcode">
+        <input name="code" type="text" placeholder="Code" autocomplete="off" />
+        <button type="submit">Next</button>
+      </form>
+    </section>
+
+    <section id="Spassword" style="display: none">
+      <form id="Fpassword">
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          id="Ipassword"
+          autocomplete="off"
+        />
+        <button type="submit">Next</button>
+      </form>
+    </section>
+
+    <section id="Ssuccess" style="display: none">
+      <p>
+        <b>The generated string session</b> was sent to
+        <b>your saved messages</b>.
+      </p>
+      <p>
+        Did you like this?
+        <a href="https://github.com/roj1512/ssg">Give it a star!</a>
+      </p>
+    </section>
+
+    <section id="Serror" style="display: none">
+      <p id="Perror"></p>
+      <button id="Bdismiss">Dismiss</button>
+    </section>
+
+    <script src="main.js"></script>
+  </body>
+</html>
