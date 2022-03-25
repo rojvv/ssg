@@ -11,7 +11,7 @@
     "buffer": "^6.0.3",
     "process": "^0.11.10",
     "sass": "^1.49.9",
-    "telegram": "^2.5.20",
+    "telegram": "^2.5.22",
     "ts-loader": "^9.2.8",
     "typescript": "^4.6.3",
     "util": "^0.12.4",
