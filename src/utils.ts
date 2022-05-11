@@ -24,8 +24,10 @@ export async function handleZodErrors(func: () => Promise<unknown>) {
       errors.push(formError)
     }
 
-    for (const [fieldError] of Object.values(flatErr.fieldErrors)) {
-      errors.push(fieldError)
+    for (const fieldError of Object.values(flatErr.fieldErrors)) {
+      if (fieldError?.[0]) {
+        errors.push(fieldError[0])
+      }
     }
 
     await displayError(errors[0] ?? "An input is invalid.")
